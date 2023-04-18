@@ -35,9 +35,20 @@ def index(request):
 #     return render(request, 'add_receipt.html', {'form': form})
 
 
+# def add_post(request):
+#     if request.method == 'POST':
+#         form = PostForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('receipts')
+#     else:
+#         form = PostForm()
+#     return render(request, 'add_post.html', {'form': form})
+
+
 def add_post(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('receipts')
