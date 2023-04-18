@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    img.food {
+    border-radius: 4%;
+      }
+
+    body {
+        padding-left: 100px;
+        padding-right: 100px;
+      }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .flex-item {
+      flex: 1;
+      margin: 5px;
+      text-align: center;
+    }
+  </style>
+    <!-- Include the child template's content here -->
+    <h1>Рецепты</h1><br><br>
+    <div class="receipts">
+      <div class="flex-container">
+        {% for receipt in receipts %}
+          <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400"></div>
+          
+      
+
+          {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="flex-container">
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+{% endblock %}
