@@ -4,9 +4,14 @@
     {% load static %}
     <style>
 
+      img.food {
+        border-radius: 4%;
+      }
+
       div.title {
         padding-left: 100px;
         padding-right: 100px;
+        /* font-size: 48px; */
       }
 
       .bd-placeholder-img {
@@ -93,9 +98,9 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="{% url 'receipts' %}" class="nav-link px-2 link-secondary">Рецепты</a></li>
         <li><a href="#" class="nav-link px-2">Мои подписки</a></li>
-        <li><a href="#" class="nav-link px-2">Создать рецепт</a></li>
-        <li><a href="{% url 'add_post' %}" class="nav-link px-2">Избранное</a></li>
-        <li><a href="#" class="nav-link px-2">Список покупок</a></li>
+        <li><a href="{% url 'add_post' %}" class="nav-link px-2">Создать рецепт</a></li>
+        <li><a href="{% url 'favorites' %}" class="nav-link px-2">Избранное</a></li>
+        <li><a href="{% url 'purchases' %}" class="nav-link px-2">Список покупок</a></li>
       </ul>
 
       <div class="col-md-3 text-end">

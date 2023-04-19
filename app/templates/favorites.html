@@ -3,6 +3,9 @@
 {% block content %}
 
 <style>
+  img.food {
+    border-radius: 4%;
+      }
 
     div.main_block {
         padding-left: 100px;
@@ -19,29 +22,21 @@
       margin: 5px;
       text-align: center;
     }
-  </style>
-    <!-- Include the child template's content here -->
-    <div class="title"><h2>Рецепты</h2></div><br><br>
-    <div class="main_block">
+</style>
+
+<div class="main_block">
+    
+    <div class="title"><h2>Избранное</h2></div><br>
     <div class="receipts">
       <div class="flex-container">
-        {% for receipt in receipts %}
+        {% for receipt in favorites_receipts %}
         <a href="{% url 'item' receipt.id %}">
           <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400" height="250">
-            <h5>{{receipt.name}}</h5></a>
+            <h5>{{receipt.name}}</h5><br>
+          </a>
             {{ receipt.type }}<br>
 
             {{receipt.cooking_time}} мин.<br>
-
-            <!-- {% if receipt.type == 'Ужин' %}
-            <div style='color: purple;'>{{ receipt.type }}</div>
-            {% endif %}
-            {% if receipt.type == 'Обед' %}
-              <div style='color: green;'>{{ receipt.type }}</div>
-            {% endif %}
-            {% if receipt.type == 'Завтрак' %}
-              <div style='color: orange;'>{{ receipt.type }}</div>
-            {% endif %} -->
 
             <br>
             {% if receipt.purchased %}
@@ -52,12 +47,15 @@
             <br>
             {% endif %}
           </div>
-                {% if forloop.counter|divisibleby:3 %}
+          
+          {% if forloop.counter|divisibleby:3 %}
             </div>
             <div class="flex-container">
           {% endif %}
         {% endfor %}
       </div>
     </div>
-  </div>
+</div>
+
+
 {% endblock %}

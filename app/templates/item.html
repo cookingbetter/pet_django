@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <style>
+      div.main_block {
+        padding-left: 400px;
+        padding-right: 500px;
+      }
+  </style>
+  
+  <div class="title"><h2>{{ receipt.name }}</h2></div>
+  <div class="main_block">
+    <img class="food" src="{{receipt.img.url}}" width="800" height="500">
+
+    {% if receipt.purchased %}
+        {{ receipt.cooking_time }} мин.<br>
+        {{ receipt.type }}<br>
+        {{ receipt.instruction }}<br><br><br><br> 
+    {% else %}
+        <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
+        <br>
+        <br>
+        <br>
+    {% endif %}
+    
+
+  </div>
+{% endblock %}

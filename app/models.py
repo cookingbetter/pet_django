@@ -9,28 +9,21 @@ class Type(models.Model):
         return self.name
     
 
-class Post(models.Model):
-    name = models.CharField(max_length=30, default='123')
-    type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True, default='ужин')
+class Receipt(models.Model):
+    name = models.CharField(max_length=30)
+    type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True, default='Ужин')
     # в конечном итоге можно наследоваться от другой модели, у которой будут определенные значени, нпример: 30, 35, 40 и там далее минут
-    cooking_time = models.CharField(max_length=30, default='123')
+    cooking_time = models.CharField(max_length=30, default='30')
     # добавить user, котороый создал эту запись о блюде
     img = models.ImageField(upload_to='images/', default='images/1.jpg') # 
-    # add instruction
-    #instruction = 
+    instruction = models.TextField(default='Пока не добавлено')
     # may be ingridients
+    favorite = models.BooleanField(default=False)
+    purchased = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
     
     class Meta:
-        verbose_name_plural = 'Posts'
-
-# class Post(models.Model):
-#     title = models.CharField(max_length=100)
-#     content = models.TextField()
-#     date_posted = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return self.title
+        verbose_name_plural = 'Receipts'
 
