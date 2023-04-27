@@ -15,25 +15,31 @@ Including another URLconf
 """
 
 # from app.views import add_post, add_receipt, index, add_new_element
-from app.views import add_post, index, favorites, checkout, purchases, item
+from app.views import add_post, index, favorites, checkout, purchases, item, subscribe
+from app.views import CustomLoginView, CustomLogoutView, signup, change_password
 
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+
 # вроде бы работает
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),
+    path('logout', CustomLogoutView.as_view(), name='logout'),
+    path('signup/', signup, name='signup'),
+    path('change_password/', change_password, name='change_password'),
     path('', index, name='receipts'),
     path('add_post/', add_post, name='add_post'),
     path('favorites/', favorites, name='favorites'),
-    # path('checkout/<int:post>/', checkout, name='checkout'),
     path('checkout/<int:receipt_id>', checkout, name='checkout'),
     path('purchases/', purchases, name='purchases'),
     path('item/<int:receipt_id>', item, name='item'),
+    path('subscribe/<int:receipt_id>', subscribe, name='subscribe'),
 
 ]
 

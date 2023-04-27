@@ -28,10 +28,11 @@
         {% for receipt in receipts %}
         <a href="{% url 'item' receipt.id %}">
           <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400" height="250">
-            <h5>{{receipt.name}}</h5></a>
+            <h5>{{ receipt.name }}</h5></a>
             {{ receipt.type }}<br>
 
-            {{receipt.cooking_time}} мин.<br>
+            {{ receipt.cooking_time}} мин.<br>
+            <a href="{% url 'subscribe' receipt.id %}">{{ receipt.user }}</a>
 
             <!-- {% if receipt.type == 'Ужин' %}
             <div style='color: purple;'>{{ receipt.type }}</div>
@@ -44,12 +45,16 @@
             {% endif %} -->
 
             <br>
-            {% if receipt.purchased %}
+            {% if request.user.is_authenticated %}
+            {% if receipt in purchased %}
             {% else %}
             <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
             <br>
             <br>
             <br>
+            {% endif %}
+              {% else %}
+            <a href="{% url 'login' %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
             {% endif %}
           </div>
                 {% if forloop.counter|divisibleby:3 %}
@@ -60,4 +65,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}

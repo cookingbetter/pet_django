@@ -3,8 +3,10 @@ from .models import Receipt
 
 
 class ReceiptForm(forms.ModelForm):
+    is_favorite = forms.BooleanField(required=False)
+
     class Meta:
         model = Receipt
-        fields = ('name', 'type', 'cooking_time', 'img', 'instruction')
+        fields = ('name', 'type', 'cooking_time', 'img', 'instruction', 'user', 'is_favorite')
+        
     
-    favorite = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))

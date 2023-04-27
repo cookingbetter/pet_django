@@ -29,7 +29,7 @@
     <div class="title"><h2>Список покупок</h2></div><br>
     <div class="receipts">
       <div class="flex-container">
-        {% for receipt in purchased_receipts %}
+        {% for receipt in purchaseds %}
         <a href="{% url 'item' receipt.id %}">
           <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400" height="250">
             <h5>{{receipt.name}}</h5><br>

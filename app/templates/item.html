@@ -12,16 +12,41 @@
   <div class="title"><h2>{{ receipt.name }}</h2></div>
   <div class="main_block">
     <img class="food" src="{{receipt.img.url}}" width="800" height="500">
+    {% if request.user.is_authenticated %}
+    {{ is_favorite }}<br>
+    {% if is_favorite %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="form_id" value="form1">
+      <button type="submit">Удалить из избранного</button>
+    </form>
+    {% else %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="form_id" value="form2">
+      <button type="submit">Сохранить в избранное</button>
+    </form>
+    {% endif %}
+    {% endif %}
 
-    {% if receipt.purchased %}
+    {% if request.user.is_authenticated %}
+    {% if receipt in purchased %}
         {{ receipt.cooking_time }} мин.<br>
         {{ receipt.type }}<br>
         {{ receipt.instruction }}<br><br><br><br> 
     {% else %}
-        <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
+        <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a><br>
         <br>
         <br>
         <br>
+    {% endif %}
+    {% else %}
+    {{ receipt.cooking_time }} мин.<br>
+      {{ receipt.type }}<br>
+      <a href="{% url 'login' %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a><br>
+      <br>
+      <br>
+      <br>
     {% endif %}
     
 

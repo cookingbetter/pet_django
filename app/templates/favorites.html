@@ -39,7 +39,7 @@
             {{receipt.cooking_time}} мин.<br>
 
             <br>
-            {% if receipt.purchased %}
+            {% if receipt in purchased %}
             {% else %}
             <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
             <br>
