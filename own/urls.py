@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 # from app.views import add_post, add_receipt, index, add_new_element
-from app.views import add_post, index, favorites, checkout, purchases, item, subscribe
+from app.views import add_post, index, favorites, checkout, purchases, item, subscribe, mysubs
 from app.views import CustomLoginView, CustomLogoutView, signup, change_password
 
 from django.conf import settings
@@ -40,6 +40,7 @@ urlpatterns = [
     path('purchases/', purchases, name='purchases'),
     path('item/<int:receipt_id>', item, name='item'),
     path('subscribe/<int:receipt_id>', subscribe, name='subscribe'),
+    path('mysubs/', mysubs, name='mysubs')
 
 ]
 

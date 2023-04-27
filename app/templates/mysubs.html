@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <style>
+      div.main_block {
+        padding-left: 400px;
+        padding-right: 500px;
+      }
+  </style>
+  
+  <div class="title"><h2>{{ receipt.name }}</h2></div>
+  <div class="main_block">
+    
+    {% for username in subscribed_to_names %}
+    <h2>{{ username }}</h2>
+    <ul>
+        {% for recipe in recipes %}
+            {% if recipe.user.username == username %}
+                <li>{{ recipe.name }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endfor %}    
+
+  </div>
+{% endblock %}

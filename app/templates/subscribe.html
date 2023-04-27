@@ -11,7 +11,10 @@
   
   <div class="title"><h2> Пользователь {{ receipt.user }}</h2></div>
   <div class="main_block">
-    
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Подписаться</button>
+    </form> 
     
     
 
