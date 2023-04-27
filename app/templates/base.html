@@ -4,9 +4,14 @@
     {% load static %}
     <style>
 
+      img.food {
+        border-radius: 4%;
+      }
+
       div.title {
         padding-left: 100px;
         padding-right: 100px;
+        /* font-size: 48px; */
       }
 
       .bd-placeholder-img {
@@ -90,18 +95,33 @@
   <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="{% url 'receipts' %}" class="nav-link px-2 link-secondary">Рецепты</a></li>
-        <li><a href="#" class="nav-link px-2">Мои подписки</a></li>
-        <li><a href="#" class="nav-link px-2">Создать рецепт</a></li>
-        <li><a href="{% url 'add_post' %}" class="nav-link px-2">Избранное</a></li>
-        <li><a href="#" class="nav-link px-2">Список покупок</a></li>
-      </ul>
+        
+        {% if user.is_authenticated %}
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'receipts' %}" class="nav-link px-2 link-secondary">Рецепты</a></li>
+          <li><a href="#" class="nav-link px-2">Мои подписки</a></li>
+          <li><a href="{% url 'add_post' %}" class="nav-link px-2">Создать рецепт</a></li>
+          <li><a href="{% url 'favorites' %}" class="nav-link px-2">Избранное</a></li>
+          <li><a href="{% url 'purchases' %}" class="nav-link px-2">Список покупок</a></li>
+        </ul>
+  
+        <div class="col-md-3 text-end">
 
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Войти</button>
-        <button type="button" class="btn btn-primary">Создать аккаунт</button>
-      </div>
+        <a href="{% url 'change_password' %}"><button type="button" class="btn btn-outline-primary me-2">Изменить пароль</button></a>
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-primary">Выход</button></a>
+
+        {% else %}
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'receipts' %}" class="nav-link px-2 link-secondary">Рецепты</a></li>
+        </ul>
+  
+        <div class="col-md-3 text-end">
+
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary me-2">Войти</button></a>
+        <a href="{% url 'signup' %}"><button type="button" class="btn btn-primary">Создать аккаунт</button></a>
+        {% endif %}
+
+        </div>
 
       <!-- <div class="col-md-3 text-end">
         <button type="button" class="btn btn-outline-primary me-2">Изменить пароль</button>

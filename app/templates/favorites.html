@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  img.food {
+    border-radius: 4%;
+      }
+
+    div.main_block {
+        padding-left: 100px;
+        padding-right: 100px;
+      }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .flex-item {
+      flex: 1;
+      margin: 5px;
+      text-align: center;
+    }
+</style>
+
+<div class="main_block">
+    
+    <div class="title"><h2>Избранное</h2></div><br>
+    <div class="receipts">
+      <div class="flex-container">
+        {% for receipt in favorites_receipts %}
+        <a href="{% url 'item' receipt.id %}">
+          <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400" height="250">
+            <h5>{{receipt.name}}</h5><br>
+          </a>
+            {{ receipt.type }}<br>
+
+            {{receipt.cooking_time}} мин.<br>
+
+            <br>
+            {% if receipt in purchased %}
+            {% else %}
+            <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+          </div>
+          
+          {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="flex-container">
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+</div>
+
+
+{% endblock %}
