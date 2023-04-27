@@ -4,7 +4,11 @@
 
 <style>
 
-    div.main_block {
+    img.food {
+    border-radius: 4%;
+      }
+
+    body {
         padding-left: 100px;
         padding-right: 100px;
       }
@@ -21,49 +25,19 @@
     }
   </style>
     <!-- Include the child template's content here -->
-    <div class="title"><h2>Рецепты</h2></div><br><br>
-    <div class="main_block">
+    <h1>Рецепты</h1><br><br>
     <div class="receipts">
       <div class="flex-container">
         {% for receipt in receipts %}
-        <a href="{% url 'item' receipt.id %}">
-          <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400" height="250">
-            <h5>{{ receipt.name }}</h5></a>
-            {{ receipt.type }}<br>
+          <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400"></div>
+          
+      
 
-            {{ receipt.cooking_time}} мин.<br>
-            <a href="{% url 'subscribe' receipt.id %}">{{ receipt.user }}</a>
-
-            <!-- {% if receipt.type == 'Ужин' %}
-            <div style='color: purple;'>{{ receipt.type }}</div>
-            {% endif %}
-            {% if receipt.type == 'Обед' %}
-              <div style='color: green;'>{{ receipt.type }}</div>
-            {% endif %}
-            {% if receipt.type == 'Завтрак' %}
-              <div style='color: orange;'>{{ receipt.type }}</div>
-            {% endif %} -->
-
-            <br>
-            {% if request.user.is_authenticated %}
-            {% if receipt in purchased %}
-            {% else %}
-            <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
-            <br>
-            <br>
-            <br>
-            {% endif %}
-              {% else %}
-            <a href="{% url 'login' %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
-            {% endif %}
-          </div>
-                {% if forloop.counter|divisibleby:3 %}
+          {% if forloop.counter|divisibleby:3 %}
             </div>
             <div class="flex-container">
           {% endif %}
         {% endfor %}
       </div>
     </div>
-  </div>
-
 {% endblock %}
