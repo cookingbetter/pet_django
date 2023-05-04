@@ -27,13 +27,15 @@
 <div class="main_block">
     
     <div class="title"><h2>Список покупок</h2></div><br>
+    Созданные выми рецепты автоматически переходят в категорию купленных
     <div class="receipts">
       <div class="flex-container">
         {% for receipt in purchaseds %}
         <a href="{% url 'item' receipt.id %}">
           <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400" height="250">
-            <h5>{{receipt.name}}</h5><br>
+            <h5>{{receipt.name}}</h5>
           </a>
+          <a href="{% url 'subscribe' receipt.id %}">{{ receipt.user }}</a><br>
             {{ receipt.type }}<br>
 
             {{receipt.cooking_time}} мин.<br>

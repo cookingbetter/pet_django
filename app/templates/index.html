@@ -48,7 +48,10 @@
             {% if request.user.is_authenticated %}
             {% if receipt in purchased %}
             {% else %}
+            {% if request.user == receipt.user %}
+            {% else %}
             <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
+            {% endif %}
             <br>
             <br>
             <br>

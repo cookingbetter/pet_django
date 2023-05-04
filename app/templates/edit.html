@@ -2,14 +2,14 @@
 
 {% block content %}
 
-  <style>
-      div.main_block {
-        padding-left: 400px;
-        padding-right: 500px;
-      }
-  </style>
-  
-  <div class="title"><h2>Создание рецепта</h2></div>
+<style>
+    div.main_block {
+      padding-left: 400px;
+      padding-right: 500px;
+    }
+</style>
+
+  <div class="title"><h2>Редактирование рецепта</h2></div>
   <div class="main_block">
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
@@ -28,10 +28,6 @@
       <div class="form-group">
         <label for="nameInput">Время приготовления</label>
         <div class="form-control">{{ form.cooking_time }}</div>
-      </div>
-      <div class="form-group">
-        <label class="form-check-label">Добавить в избранное</label>
-        <div class="form-check-input-lg">{{ form.is_favorite }}</div>
       </div>
       <br>
       <div class="form-group">

@@ -32,8 +32,9 @@
         {% for receipt in favorites_receipts %}
         <a href="{% url 'item' receipt.id %}">
           <div class="flex-item"><img class="food" src="{{receipt.img.url}}" width="400" height="250">
-            <h5>{{receipt.name}}</h5><br>
+            <h5>{{receipt.name}}</h5>
           </a>
+          <a href="{% url 'subscribe' receipt.id %}">{{ receipt.user }}</a><br>
             {{ receipt.type }}<br>
 
             {{receipt.cooking_time}} мин.<br>
@@ -41,10 +42,11 @@
             <br>
             {% if receipt in purchased %}
             {% else %}
+            {% if request.user == receipt.user %}
+            {% else %}
+            <a href="{% url 'subscribe' receipt.id %}">{{ receipt.user }}</a>
             <a href="{% url 'checkout' receipt.id %}" class="w-70 btn btn btn-outline-primary">Совершить покупку</a>
-            <br>
-            <br>
-            <br>
+            {% endif %}
             {% endif %}
           </div>
           

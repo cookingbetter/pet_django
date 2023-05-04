@@ -9,4 +9,4 @@ class ReceiptForm(forms.ModelForm):
         model = Receipt
         fields = ('name', 'type', 'cooking_time', 'img', 'instruction', 'user', 'is_favorite')
         
-    
+    img = forms.ImageField(required=False, widget=forms.FileInput)
