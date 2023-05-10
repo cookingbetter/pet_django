@@ -1,2 +1,1 @@
-# pet_django
-Last version of the project
+<h2>Магазин рецептов</h2>
